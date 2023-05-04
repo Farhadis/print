@@ -1,11 +1,3 @@
-// document.getElementById("flecheL").addEventListener("click", function() {
-// 	alert("Hello World!");
-//   });
-
-document.getElementById("flecheR").addEventListener("click", function() {
-	alert("Hello World!");
-  });
-
 
 
 const slides = [
@@ -28,36 +20,54 @@ const slides = [
 ]
 
 
-var myImage = document.getElementById("banner-img");
-var imageArray = ["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4png"];
-var imageIndex = 1;
+
+document.getElementById("flecheR").addEventListener("click", changeImage);
+document.getElementById("flecheL").addEventListener("click", change);
+
+
+let i = 0;
+
 
 function changeImage(){
-	myImage.setAttribute("src", imageArray[imageIndex]);
-	// imageIndex++;
-	if (imageIndex > 3) {
-		imageIndex + 0;
+	if(i < slides.length-1)
+	{
+		i++;
 	}
+	else
+	{
+		i = 0;
+	}
+	var myImage = document.getElementById("slide");
+	var imgScr = "./assets/images/slideshow/" + slides[i].image;
+	myImage.setAttribute("src", imgScr);
+
+	var myText = document.getElementById("texto");
+	myText.innerHTML = slides[i].tagLine;
+
+	var dots = document.getElementsByClassName("dot");	
+	dots[0].className = " dot_selected"; 
+
+
 }
 
-// const tag = document.createElement("p");
-// const text = document.createTextNode("Tirages haute définition grand format <span>pour vos bureaux et events</span>");
-// tag.appendChild("text");
+function change(){
+	if(i > 0)
+	{
+		i--;	
+	}
+	else
+	{
+		i = slides.length-1;	
+	}
 
-// const element = document.getElementById("banner");
-// const child = document.getElementsByClassName("banner-text");
-// element.appendChild(tag, child);
+	var myImage = document.getElementById("slide");
+	var imgScr = "./assets/images/slideshow/" + slides[i].image;
+	myImage.setAttribute("src", imgScr);
 
+	var myText = document.getElementById("texto");
+	myText.innerHTML = slides[i].tagLine;
 
-
-
-// test();
-// function test() {
-// 	document.getElementsByClassName("banner-text").innerText = "Tirages haute définition grand format <span>pour vos bureaux et events</span";
-// }
-
-
-
-
-
-
+	var dots = document.getElementsByClassName("dot");
+	dots[i].className = dots[i].className.replace("dot_selected", "dot");
+	dots[i -1].className = " dot_selected"; 
+}
