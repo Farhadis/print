@@ -21,8 +21,8 @@ const slides = [
 
 
 
-document.getElementById("flecheR").addEventListener("click", changeImage);
-document.getElementById("flecheL").addEventListener("click", change);
+document.getElementById("flecheR").addEventListener("click", changeRight);
+document.getElementById("flecheL").addEventListener("click", changeLeft);
 
 
 let i = 0;
@@ -34,7 +34,7 @@ var myText = document.getElementById("texto");
 const dots = document.querySelectorAll('.dot');
 
 
-function changeImage(){
+function changeRight(){
 	if(i < slides.length-1)
 	{
 		i++;
@@ -58,7 +58,7 @@ function changeImage(){
 	  });
 }
 
-function change(){
+function changeLeft(){
 	if(i > 0)
 	{
 		i--;	
