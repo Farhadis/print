@@ -1,5 +1,4 @@
 
-
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -21,11 +20,18 @@ const slides = [
 
 
 
+
 document.getElementById("flecheR").addEventListener("click", changeImage);
 document.getElementById("flecheL").addEventListener("click", change);
 
 
 let i = 0;
+
+var myImage = document.getElementById("slide");
+
+var myText = document.getElementById("texto");
+
+const dots = document.querySelectorAll('.dot');
 
 
 function changeImage(){
@@ -37,17 +43,19 @@ function changeImage(){
 	{
 		i = 0;
 	}
-	var myImage = document.getElementById("slide");
+	
 	var imgScr = "./assets/images/slideshow/" + slides[i].image;
 	myImage.setAttribute("src", imgScr);
 
-	var myText = document.getElementById("texto");
 	myText.innerHTML = slides[i].tagLine;
-
-	var dots = document.getElementsByClassName("dot");	
-	dots[0].className = " dot_selected"; 
-
-
+	
+	dots.forEach((dot, index) => {
+		if (index === i) {
+		  dot.classList.add('dot_selected');
+		} else {
+		  dot.classList.remove('dot_selected');
+		}
+	  });
 }
 
 function change(){
@@ -60,14 +68,17 @@ function change(){
 		i = slides.length-1;	
 	}
 
-	var myImage = document.getElementById("slide");
 	var imgScr = "./assets/images/slideshow/" + slides[i].image;
 	myImage.setAttribute("src", imgScr);
-
-	var myText = document.getElementById("texto");
+	
 	myText.innerHTML = slides[i].tagLine;
 
-	var dots = document.getElementsByClassName("dot");
-	dots[i].className = dots[i].className.replace("dot_selected", "dot");
-	dots[i -1].className = " dot_selected"; 
+    dots.forEach((dot, index) => {
+      if (index === i) {
+        dot.classList.add('dot_selected');
+      } else {
+        dot.classList.remove('dot_selected');
+      }
+    });
+
 }
